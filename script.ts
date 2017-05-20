@@ -60,7 +60,50 @@ function sayHello(): void{
 }
 
 //argument types
-
 function multiply(x: number, y:number): number{
   return x * y;
 }
+
+//function types
+let myMultiply: (val1: number, val2: number) => number; 
+
+//objects
+let userData: {name: string, age: number} = {
+  name: 'Robin',
+  age: 25
+}
+
+//complex object
+let complex1: { data: number[], output: (all: boolean) => number[] } = {
+    data:[100, 3.99, 4],
+    output: function(all: boolean): number[]{
+    return this.data;
+    }
+}
+
+//type alias
+type complexITY = { data: number[], output: (all: boolean) => number[]};
+
+//-----> using custom type of complexITY
+
+let complex: complexITY = {
+    data: [ 100, 3.99, 4],
+    output: function (all: boolean): number[]{
+    return this.data;
+    }
+}
+
+
+//union types
+let myRealRealAge: number | string = 27;
+//will never be a boolean, can only  be number or string;
+myRealRealAge = "27"
+
+//check types
+ var finalValue = 2;
+ console.log(typeof finalValue)
+
+ //never
+ function neverReturns(): never {
+   throw new Error('this is an error');
+ }

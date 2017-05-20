@@ -36,8 +36,41 @@ var Color;
 var myColor = Color.Green;
 //any
 var car = 'BMW';
-//function
+//function -> the type returns to the return value
 function returnMyName() {
     return myName;
 }
-console.log(returnMyName());
+//console.log(returnMyName());
+//void -> nothing to be returned
+function sayHello() {
+    console.log('hello');
+}
+//argument types
+function multiply(x, y) {
+    return x * y;
+}
+//function types
+var myMultiply;
+//objects
+var userData = {
+    name: 'Robin',
+    age: 25
+};
+//complex object
+var complex1 = {
+    data: [100, 3.99, 4],
+    output: function (all) {
+        return this.data;
+    }
+};
+//-----> using custom type of complexITY
+var complex = {
+    data: [100, 3.99, 4],
+    output: function (all) {
+        return this.data;
+    }
+};
+//union types
+var myRealRealAge = 27;
+//will never be a boolean, can only  be number or string;
+myRealRealAge = "27";
