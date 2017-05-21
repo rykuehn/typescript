@@ -101,9 +101,70 @@ myRealRealAge = "27"
 
 //check types
  var finalValue = 2;
- console.log(typeof finalValue)
+ //console.log(typeof finalValue)
 
  //never
  function neverReturns(): never {
    throw new Error('this is an error');
  }
+
+ //nullable types --- chanfe in ts.json. add a flag that changes nullable check
+
+//SUMMARY EXERCISE
+type BankAccount = {money: number, deposit: (value: number) => void}
+
+let bankAccount: BankAccount = {
+    money: 2000,
+    deposit(value: number): void {
+        this.money += value;
+    }
+};
+ 
+type person = {name: string, bankAccount: BankAccount , hobbies: string[], }
+let myself: person = {
+    name: "Max",
+    bankAccount: bankAccount,
+    hobbies: ["Sports", "Cooking"]
+};
+ 
+myself.bankAccount.deposit(3000);
+ 
+console.log(myself);
+
+class Person {
+  name: string;
+  private type: string;
+  protected age: number = 25;
+
+  constructor(name: string, public username: string){
+    this.name = name;
+  }
+
+  printAge(){
+    console.log(this.age);
+    this.setType('old guy');
+  }
+
+  private setType(type: string){
+    this.type = type;
+    console.log(this.type);
+  }
+}
+
+const person = new Person('Robin', 'rykuehn');
+
+//console.log('person', person)
+
+//INHERITANCE
+
+class Robin extends Person {
+  name = 'John'
+
+  constructor(username){
+    //super refers to parent class
+    super("max",username);
+  }
+}
+
+const John = new Robin('Anna');
+console.log(John)
