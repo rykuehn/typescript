@@ -168,3 +168,140 @@ class Robin extends Person {
 
 const John = new Robin('Anna');
 console.log(John)
+
+//GETTERS AND SETTERS
+class Plant {
+  private _species: string;
+
+  get species(){
+    return this._species;
+  }
+
+  set species(value: string){
+    if(value.length > 3){
+      this._species = value;
+    } else {
+      this._species = "Default";
+    }
+
+  }
+}
+
+let plant = new Plant();
+
+
+//  STATIC PROPERTIES AND METHODS
+//add static keyword to access property without having to instantiate a new instance of the class
+class Helpers {
+  static PI: number = 3.14;
+  static calcCircumference(diameter: number): number {
+    return diameter * this.PI;
+  }
+}
+
+//console.log(Helpers.calcCircumference(4) * 2);
+
+//ABSTRACT CLASSES: CAN NOT BE INSANTIATED. HAS TO BE EXTENDED
+//general functionality in base class. 
+
+abstract class Project{
+  projectName: string = "Default";
+  budget: number;
+
+  abstract changeName(name: string): void;
+
+  calcBudget(){
+    return this.budget * 2;
+  }
+}
+
+
+class ITProject extends Project {
+  changeName(name: string): void {
+    this.projectName = name;
+  }
+}
+
+let newProject = new ITProject();
+
+
+newProject.changeName('Robin Wins');
+console.log(newProject);
+
+//PRIVATE constructor ---> force the class to be a singleton
+class OnlyOne {
+  private static instance: OnlyOne;
+
+  private constructor(public readonly name: string){}
+
+  static getInstance(){
+    if(!OnlyOne.instance){
+      OnlyOne.instance = new OnlyOne('This is the only one');
+    }
+    return OnlyOne.instance;
+  }
+}
+
+//let wrong = new OnlyOne('The Only one');
+let right = OnlyOne.getInstance();
+
+//READ ONLY PROPERTIES
+
+//add read only to the public in the constructor(see above)
+
+// Exercise 1 - How was your TypeScript Class?
+class Car{
+    constructor(public name: string){}
+    acceleration: number = 0;
+    honk():void {
+      console.log("Toooooooooot!");
+    };
+ 
+    accelerate(speed: number): void {
+        this.acceleration = this.acceleration + speed;
+    }
+}
+
+let car1 = new Car("BMW");
+car1.honk();
+console.log('!!!!!!!!', car1.acceleration);
+car1.accelerate(10);
+console.log('222222', car1.acceleration);
+ 
+// Exercise 2 - Two objects, based on each other ...
+// var baseObject = {
+//     width: 0,
+//     length: 0
+// };
+// var rectangle = Object.create(baseObject);
+// rectangle.width = 5;
+// rectangle.length = 2;
+// rectangle.calcSize = function() {
+//     return this.width * this.length;
+// };
+// console.log(rectangle.calcSize());
+ 
+// // Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+// var person = {
+//     _firstName: ""
+// };
+// Object.defineProperty(person, "firstName", {
+//     get: function () {
+//         return this._firstName;
+//     },
+//     set: function (value) {
+//         if (value.length > 3) {
+//             this._firstName = value;
+//         }
+//         else {
+//             this._firstName = "";
+//         }
+//     },
+//     enumerable: true,
+//     configurable: true
+// });
+// console.log(person.firstName);
+// person.firstName = "Ma";
+// console.log(person.firstName);
+// person.firstName = "Maximilian";
+// console.log(person.firstName);
